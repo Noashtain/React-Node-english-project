@@ -1,0 +1,84 @@
+.listWordContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.testFilter{
+width: 364px;
+height: 64px;
+width: 364px;
+height: 64px;
+border-radius: 50px;
+background-color: rgba(168, 45, 122, 1);
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+.testFilter button{
+  /* כל הבחנים */
+font-family: 'Heebo';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 118.09%;
+/* or 28px */
+display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+border: none;
+
+
+}
+.notChosenButton{
+  background-color: transparent;
+
+}
+.chosenButton{
+  Width:167px;
+  Height:44px;
+background: #FFFFFF;
+border-radius: 50px;
+
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.tableHead {
+  background: linear-gradient(154.24deg, #A82D7A -7.66%, #082B93 129.98%);
+  border-radius:100px;
+  width: 1109px;
+  height: 72px;
+  border: 3px solid rgba(255, 255, 255, 1)
+
+}
+
+.tableRow {
+  width: 1109px;
+  height: 48px;
+  background: #2D40A8;
+  border-radius: 23px;
+  border: none;
+}
+
+th, td {
+  padding: 0;
+  width: 224px;
+  height: 72px;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+}
+.tableHead th {
+  border: 3px solid rgba(255, 255, 255, 1);
+}
+.iconLink{
+  color: rgba(255, 255, 255, 1);
+}

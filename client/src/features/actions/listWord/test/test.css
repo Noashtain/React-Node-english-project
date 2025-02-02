@@ -1,0 +1,44 @@
+/* קובץ CSS זה מכיל את כל הסגנונות שנמצאים בקומפוננטה Test */
+
+.background-animation {
+  /* סגנונות עבור הרקע עם האנימציה */
+}
+
+.paper-container {
+  max-width: 900px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.warning-box {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.warning-text {
+  color: maroon;
+  margin-bottom: 16px;
+}
+
+.mark-text {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.text-field {
+  width: 100px;
+}
+
+.text-field .MuiInput-underline:before {
+  border-bottom-color: #1976d2;
+}
+
+.text-field .MuiInput-underline:after {
+  border-bottom-color: #1976d2;
+}

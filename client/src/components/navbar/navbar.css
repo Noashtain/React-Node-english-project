@@ -1,0 +1,120 @@
+/* Component 17 */
+.navbar {
+    /* width: 1920px;
+    height: 117px; */
+    width: 100%;
+    left: calc(50% - 1920px/2);
+    top: 0px;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25));
+    display: flex;
+flex-direction: row;
+
+
+/* Component 18 */
+
+width: 1920px;
+height: 117px;
+left: calc(50% - 1920px/2);
+top: 0px;
+
+filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25));
+
+}
+.wrappeLinks
+{display: flex;
+flex-direction: row;
+width: 821px;
+height: 49px;}
+/* ENGLIQUIZZES */
+.text {
+    height: 46px;
+
+    /* top: calc(50% - 46px/2 + 0.5px); */
+
+    font-family: 'IBM Plex Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 46px;
+    /* display: flex;
+    align-items: center; */
+    background: linear-gradient(140.91deg, #A82D7A 6.86%, #082B93 136.59%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+/* אודות */
+.linksToPages {
+    width: 130px;
+    height: 49px;
+
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 204%;
+    align-items: center;
+    text-align: center;
+
+    color: #2D40A8;
+
+    /* flex: none; */
+    /* order: 6; */
+    /* flex-grow: 0; */
+}
+
+.linksToPages:hover {
+  
+    color: #A82D7A;
+    /* order: 5; */
+}
+.wrapper,.numberOfNotifications{
+    border-radius: 100%;
+    width: 63px;
+    height:63px
+    ;
+ 
+display: flex;
+align-items: center;
+justify-content: center;
+ background: linear-gradient(154.24deg, #A82D7A -7.66%, #082B93 129.98%);
+}
+
+.details{
+  
+height: 37px;
+width: 37px;
+}
+.icon-container {
+    position: relative;
+    display: inline-block;
+  }
+.numberOfNotifications{
+    /* 2 */
+width: 13px;
+height: 13px;
+position: absolute;
+top: 20px;
+right: 20px;
+font-family: 'Heebo';
+font-style: normal;
+font-weight: 700;
+font-size: 11px;
+line-height: 118.09%;
+/* identical to box height, or 13px */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+}
+
+.numberOfNotificationsContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
