@@ -1,5 +1,5 @@
+import { Box } from '@mui/material';
 import React from 'react';
-import { Box, Typography } from '@mui/material';
 
 const MainPage = () => {
   return (
@@ -24,17 +24,6 @@ const MainPage = () => {
           marginBottom: '1rem'
         }} 
       />
-      {/* <Typography 
-        variant="h4" 
-        component="div" 
-        sx={{ 
-          color: '#9B153B', 
-          fontWeight: 'bold',
-          fontSize: '2.5rem'
-        }}
-      >
-        ברוכים הבאים למערכת שלנו
-      </Typography> */}
     </Box>
   );
 };

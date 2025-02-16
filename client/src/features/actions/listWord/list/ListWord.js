@@ -1,43 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import {
-  ThemeProvider,
-  
-  Box,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Tooltip,
-  Typography,
- 
-} from "@mui/material";
-import './listWord.css';
-import Badge from '@mui/material/Badge';
-import { FaPen } from 'react-icons/fa';
-import { MdSportsEsports } from 'react-icons/md';
-import SearchIcon from "@mui/icons-material/Search";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import DeleteIcon from "@mui/icons-material/Delete";
 import DescriptionIcon from "@mui/icons-material/Description";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import AssignmentIcon from "@mui/icons-material/Assignment";
+import {
+  Box,
+  IconButton,
+  Tooltip,
+  Typography
+} from "@mui/material";
+import Badge from '@mui/material/Badge';
+import React, { useEffect, useState } from "react";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
+import { FaPen } from 'react-icons/fa';
+import { MdSportsEsports } from 'react-icons/md';
+import './listWord.css';
 
 import { Link, NavLink } from "react-router-dom";
 // import { FaCheckCircle } from 'react-icons/fa';
 
-import theme from "../../../../theme";
+import LockIcon from '@mui/icons-material/Lock';
+import useAuth from "../../../../hooks/useAuth";
+import useSchoolAndClass from "../../../../hooks/useSchoolAndClass";
+import CurrentSchoolAndClass from "../../../companies/CurrentSchoolAndClass/CurrentSchoolAndClass";
+import LOADING from "../../../loadingAnimation/LoadingAnimation";
 import {
   useDeleteListWordsMutation,
   useGetAllListWordsByClassMutation,
-  useGetTestByClassAndUserMutation,
   useGetAllTestsDoneMutation,
+  useGetTestByClassAndUserMutation,
 } from "../view/ListWordApiSlice";
-import LockIcon from '@mui/icons-material/Lock';
-import CurrentSchoolAndClass from "../../../companies/CurrentSchoolAndClass/CurrentSchoolAndClass";
-import useAuth from "../../../../hooks/useAuth";
-import useSchoolAndClass from "../../../../hooks/useSchoolAndClass";
-import LOADING from "../../../loadingAnimation/LoadingAnimation";
 const ListWord = ({ todos }) => {
   const { roles, _id: user } = useAuth(); // Retrieve roles
   const [activeConversationsCount,setActiveConversationsCount]=useState()
@@ -67,7 +59,6 @@ const ListWord = ({ todos }) => {
   }
 
   const { chosenClass, chosenSchool } = useSchoolAndClass();
-  const [playId, setPlayId] = useState(null)
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
     if (roles === "Student" && !todos) {
@@ -169,18 +160,6 @@ if(isLoading)return <LOADING/>
               <MdSportsEsports />
             </IconButton>
           </Tooltip>
-
-          {/* <Tooltip title="Hangman-play">
-    <IconButton
-      component={Link}
-      to={`/dash/play/hangman/${params.row.id}`}
-      aria-label="play-memory"
-      color="info"
-      sx={{ mr: 1 }}
-    >
-      <FaUserSecret />
-    </IconButton>
-  </Tooltip> */}
         </>)
     },
     {
@@ -206,22 +185,6 @@ if(isLoading)return <LOADING/>
 
           {roles === "Teacher" ? (
             <>
-{/* 
-              <Tooltip title="Update">
-                <IconButton
-                  component={Link}
-                  to={`/dash/${params.row.id}`}
-                  aria-label="update"
-                  color="info"
-                  sx={{ mr: 1 }}
-                >
-                  <EditIcon />
-                </IconButton>
-              </Tooltip> */}
-
-
-
-
 
        {  params.row.active&&         
             <Tooltip title="Update">
@@ -247,12 +210,6 @@ if(isLoading)return <LOADING/>
             </Tooltip>
 
     }
-        
-      
-
-
-
-
               <Tooltip title="marks">
                 <IconButton
                   component={Link}
@@ -318,18 +275,6 @@ if(isLoading)return <LOADING/>
         )}
 
 
-              {/* <Tooltip title="test">
-                <IconButton
-                  component={Link}
-                  to={`/dash/test/false/${params.row.id}`}
-                  aria-label="view"
-                  color="primary"
-                >
-                  <DescriptionIcon />
-                </IconButton>
-              </Tooltip> */}
-              
-
 <Tooltip title="התכתבות עם המורה">
   <IconButton
     component={Link}
@@ -345,7 +290,6 @@ if(isLoading)return <LOADING/>
     </Badge>
   </IconButton>
 </Tooltip>
-
               <Tooltip title="trying">
                 <IconButton
                   component={Link}
@@ -353,7 +297,6 @@ if(isLoading)return <LOADING/>
                   aria-label="trying"
                   color="primary"
                 >
-
                   <FaPen />
                 </IconButton>
               </Tooltip>
@@ -410,5 +353,3 @@ if(isLoading)return <LOADING/>
 };
 
 export default ListWord;
-
-

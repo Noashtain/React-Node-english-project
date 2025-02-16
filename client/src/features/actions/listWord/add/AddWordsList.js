@@ -1,47 +1,43 @@
 
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import WarningIcon from '@mui/icons-material/Warning';
 import {
   Box,
-  Typography,
   Button,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
   Checkbox,
-  ListItemText,
-  TableCell,
-  TextField,
-  Paper,
-  IconButton,
-  Divider,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  // CircularProgress,
   Grid,
+  IconButton,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  Paper,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-
-import WarningIcon from '@mui/icons-material/Warning';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom";
+import usePopoverInstructions from "../../../../hooks/usePopoverInstructions";
+import useSchoolAndClass from "../../../../hooks/useSchoolAndClass";
+import useWordSpeaker from "../../../../hooks/useWordSpeaker";
 import CurrentSchoolAndClass from "../../../companies/CurrentSchoolAndClass/CurrentSchoolAndClass";
 import { useAddListWordsMutation, useGetAllListWordsByClassMutation, useUpdateListWordsMutation } from "../view/ListWordApiSlice";
-import useWordSpeaker from "../../../../hooks/useWordSpeaker";
-import { HiOutlineSpeakerWave } from "react-icons/hi2";
-import useSchoolAndClass from "../../../../hooks/useSchoolAndClass";
-import usePopoverInstructions from "../../../../hooks/usePopoverInstructions";
 const AddWordsList = ({ WORDLIST }) => {
-  // const { company } = useAuth();
   const { _id } = useParams();
-  // const navigate = useNavigate();
   const [addListWords, { isError: addError, error: addApiError, isSuccess: addSuccess, isLoading: addLoading }] = useAddListWordsMutation();
   const [updateListWords, { isError: updateError, error: updateApiError, isSuccess: updateSuccess, isLoading: updateLoading }] = useUpdateListWordsMutation();
   const [getAllListWordsByClass, teacherResponse] = useGetAllListWordsByClassMutation();
@@ -99,11 +95,6 @@ getAllListWordsByClass({ chosenClass})
     }
   }, [updateSuccess, updateLoading])
 
-
-
-
-
-
   const [selectedTests, setSelectedTests] = useState([]);
 
   // Handle change in selection
@@ -148,9 +139,6 @@ setAllTestsFromThatTeacher(allTestsFromNotSelected)
     // e.g., update state, make API call, etc.
   };
   
-
-
-
 
   useEffect(()=>{
     if(teacherResponse.isSuccess&&!wasFull){
@@ -248,11 +236,6 @@ setAllTestsFromThatTeacher(allTestsFromNotSelected)
   const handleListen = (word) => {
     speakWord(word)
   }
-
-
-
-
-
   
   return (
     <Box className="background-animation" sx={{

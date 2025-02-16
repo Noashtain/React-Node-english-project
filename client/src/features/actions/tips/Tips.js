@@ -1,5 +1,3 @@
-
-// export default Tips;import React from 'react';
 import { Box, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { FormatListNumbered, TipsAndUpdates } from '@mui/icons-material';

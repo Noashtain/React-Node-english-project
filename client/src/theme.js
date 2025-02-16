@@ -1,7 +1,3 @@
-
-
-
-
 import { createTheme } from '@mui/material/styles';  // מייבא את הפונקציה createTheme מ-MUI ליצירת נושא מותאם אישית
 
 // יצירת נושא מותאם אישית באמצעות הפונקציה createTheme

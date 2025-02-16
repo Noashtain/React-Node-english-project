@@ -1,110 +1,80 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Box, Typography, IconButton, Grid, Paper } from '@mui/material';
-import { History, Event, Schedule, TextFields } from '@mui/icons-material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
+import React from 'react';
 import theme from '../../theme';
+import Footer from '../../components/footer/Footer';
 
 const GrammarRules = () => {
+  const papers = ["עבר פשוט", "הווה ממושך", "עתיד פשוט", "הסבר על פועל"];
+
   return (
+    <>
+    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div className="listWordContainer">
+    <svg width="100%" height="100%" viewBox="0 0 460 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M43.207 2.09375C51.8398 2.09375 59.2539 3.38867 65.4492 5.97852C71.6953 8.51758 76.4941 12.2754 79.8457 17.252C83.248 22.2285 84.9492 28.373 84.9492 35.6855C84.9492 41.9824 83.959 47.2637 81.9785 51.5293C79.998 55.7949 77.2305 59.3242 73.6758 62.1172C70.1211 64.8594 65.9316 67.1445 61.1074 68.9727L52.8047 73.8477H17.0039V52.9766H43.0547C46.6094 52.9766 49.5801 52.3926 51.9668 51.2246C54.3535 50.0566 56.1309 48.3555 57.2988 46.1211C58.5176 43.8867 59.127 41.1953 59.127 38.0469C59.127 33.375 57.8066 29.6934 55.166 27.002C52.5254 24.3105 48.5391 22.9648 43.207 22.9648H26.2207V113H0.398438V2.09375H43.207ZM36.5039 63.7168H63.8496L88.834 111.857V113H61.1836L36.5039 63.7168ZM187.02 2.09375V74.5332C187.02 83.2168 185.191 90.5293 181.535 96.4707C177.93 102.412 172.877 106.906 166.377 109.953C159.877 113 152.361 114.523 143.83 114.523C135.299 114.523 127.758 113 121.207 109.953C114.656 106.906 109.527 102.412 105.82 96.4707C102.164 90.5293 100.336 83.2168 100.336 74.5332V2.09375H126.234V74.5332C126.234 79.1035 126.92 82.8105 128.291 85.6543C129.662 88.4473 131.643 90.5039 134.232 91.8242C136.873 93.0938 140.072 93.7285 143.83 93.7285C147.639 93.7285 150.812 93.0938 153.352 91.8242C155.941 90.5039 157.896 88.4473 159.217 85.6543C160.537 82.8105 161.197 79.1035 161.197 74.5332V2.09375H187.02ZM277.055 113H221.373V92.2051H277.055V113ZM229.98 113H204.158V2.09375H229.98V113ZM364.652 113H306.076V92.2051H364.652V113ZM314.76 113H288.861V2.09375H314.76V113ZM357.035 66.0781H306.076V45.9688H357.035V66.0781ZM364.652 22.9648H306.076V2.09375H364.652V22.9648ZM418.354 114.523C412.666 114.523 407.105 113.787 401.672 112.314C396.238 110.842 391.312 108.582 386.895 105.535C382.527 102.488 379.023 98.6289 376.383 93.957C373.793 89.2344 372.498 83.5977 372.498 77.0469H398.32C398.32 80.2461 398.752 82.9375 399.615 85.1211C400.529 87.3047 401.85 89.082 403.576 90.4531C405.303 91.7734 407.41 92.7383 409.898 93.3477C412.387 93.957 415.205 94.2617 418.354 94.2617C421.908 94.2617 424.777 93.7793 426.961 92.8145C429.145 91.7988 430.744 90.4785 431.76 88.8535C432.775 87.2285 433.283 85.4512 433.283 83.5215C433.283 81.2363 432.801 79.2559 431.836 77.5801C430.871 75.8535 428.967 74.2031 426.123 72.6289C423.279 71.0039 419.014 69.2773 413.326 67.4492C408.4 65.8242 403.678 63.9961 399.158 61.9648C394.689 59.8828 390.703 57.4453 387.199 54.6523C383.695 51.8594 380.902 48.6094 378.82 44.9023C376.789 41.1445 375.773 36.7773 375.773 31.8008C375.773 25.4531 377.576 19.9434 381.182 15.2715C384.838 10.5996 389.84 6.99414 396.188 4.45508C402.535 1.86523 409.771 0.570312 417.896 0.570312C426.123 0.570312 433.309 1.99219 439.453 4.83594C445.648 7.67969 450.473 11.6914 453.926 16.8711C457.43 22.0508 459.182 28.0937 459.182 35H433.436C433.436 32.2578 432.852 29.8457 431.684 27.7637C430.566 25.6309 428.814 23.9805 426.428 22.8125C424.092 21.5938 421.07 20.9844 417.363 20.9844C413.859 20.9844 410.914 21.4922 408.527 22.5078C406.191 23.5234 404.439 24.8691 403.271 26.5449C402.154 28.1699 401.596 30.0234 401.596 32.1055C401.596 34.2891 402.408 36.2188 404.033 37.8945C405.709 39.5703 408.07 41.1191 411.117 42.541C414.215 43.9121 417.896 45.2832 422.162 46.6543C430.186 49.1426 436.939 52.0625 442.424 55.4141C447.908 58.7148 452.047 62.6504 454.84 67.2207C457.684 71.7402 459.105 77.123 459.105 83.3691C459.105 89.9707 457.43 95.6074 454.078 100.279C450.727 104.9 446.004 108.43 439.91 110.867C433.816 113.305 426.631 114.523 418.354 114.523Z" fill="url(#paint0_radial_785_5891)"/>
+<defs>
+<radialGradient id="paint0_radial_785_5891" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-452 -20.015) rotate(5.00127) scale(1365.2 237.581)">
+<stop stop-color="#F3A9D5"/>
+<stop offset="1" stop-color="#A82D7A"/>
+</radialGradient>
+</defs>
+</svg>
+</div>
+</Box>
     <ThemeProvider theme={theme}>
+ 
       <Box
         sx={{
+          position: "absolute",
+          width: "1930px",
+          height: "963px",
+          left: "calc(50% - 965px)",
+          top: "117px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: "65vh",
-          backgroundColor: "#f3f3e9",
-          gap: 2,
-          padding: 4,
-
-
-          backgroundColor: '#ffffff',  // צבע רקע לבן
-          padding: '20px',
-          borderRadius: '16px',
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // הצללה עדינה
+          background: "linear-gradient(154.24deg, #A82D7A -7.66%, #082B93 129.98%)",
         }}
       >
-        <Typography variant="h2" sx={{ color: theme.palette.primary.main }}>
-          בחרו את הזמן שאתם רוצים ללמוד:
+        <Typography variant="h2" 
+        sx={{ color:  "#FFFFFF", size: "24px", font:"Heebo" ,width: "513px",
+          height: "123px",
+          top: "327px",
+          left: "703px",
+          Align: "center"
+          }}>
+          אז על איזה זמן אתם בוחרים ללמוד?
         </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item>
-            <Paper elevation={4} sx={{ padding: 2, textAlign: "center" }}>
-              <IconButton
-                component={Link}
-                to="past-simple-rules"
+        <Grid
+          container
+          justifyContent="center"
+          sx={{
+            columnGap: "52px",
+          }}
+        >
+          {papers.map((text, index) => (
+            <Grid item key={index} sx={{ width: '332px' }}>
+              <Paper
                 sx={{
-                  fontSize: 60,
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "transform 0.3s ease-in-out",
-                  },
+                  height: "298px",
+                  borderRadius: "40px",
+                  background: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
+                elevation={4}
               >
-                <History />
-              </IconButton>
-              <Typography variant="h6">עבר פשוט</Typography>
-            </Paper>
-          </Grid>
-          <Grid item>
-            <Paper elevation={4} sx={{ padding: 2, textAlign: "center" }}>
-              <IconButton
-                component={Link}
-                to="present-continuous-rules"
-                sx={{
-                  fontSize: 60,
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "transform 0.3s ease-in-out",
-                  },
-                }}
-              >
-                <Schedule />
-              </IconButton>
-              <Typography variant="h6">הווה ממושך</Typography>
-            </Paper>
-          </Grid>
-          <Grid item>
-            <Paper elevation={4} sx={{ padding: 2, textAlign: "center" }}>
-              <IconButton
-                component={Link}
-                to="future-simple-rules"
-                sx={{
-                  fontSize: 60,
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "transform 0.3s ease-in-out",
-                  },
-                }}
-              >
-                <Event />
-              </IconButton>
-              <Typography variant="h6">עתיד פשוט</Typography>
-            </Paper>
-          </Grid>
-          <Grid item>
-            <Paper elevation={4} sx={{ padding: 2, textAlign: "center" }}>
-              <IconButton
-                component={Link}
-                to="verb-explanation"
-                sx={{
-                  fontSize: 60,
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "transform 0.3s ease-in-out",
-                  },
-                }}
-              >
-                <TextFields />
-              </IconButton>
-              <Typography variant="h6">הסבר על פועל</Typography>
-            </Paper>
-          </Grid>
+                <Typography variant="h6">{text}</Typography>
+              </Paper>
+            </Grid>
+          ))}
         </Grid>
       </Box>
-    </ThemeProvider>
+      <Footer/>
+    </ThemeProvider></>
   );
 };
 

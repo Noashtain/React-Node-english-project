@@ -57,17 +57,11 @@ const studentMenuActions = [
       { title: "ראשי", path: "/dash", icon: <Dashboard /> },
       { title: "בחנים", path: "wordsList", icon: <FaBook /> },
       { title: "בחנים שהושלמו", path: "todos", icon: <FaCheckCircle /> },
-      // { title: "גיליון ציונים", path: "marks", icon: <Star /> },
       { title: "משחקים", path: "play", icon: < MdSportsEsports /> },
       { title: "גרפים", path: "graphs", icon: <FaChartLine /> },
       { title: "טיפים לדיבור באנגלית", path: "tips", icon: <ChatBubbleOutline /> },
       { title:"כללי דקדוק", path: "gramar-rules", icon: <Book /> },
-      // { title:"התכתבות עם המורה", path: "comments", icon: <BsFillChatRightDotsFill /> },
-
     ],
-
-
-
   },
   {
     title: "אישי",
@@ -207,8 +201,6 @@ const navigate=useNavigate()
         )}
 
       </Box>
-   
-
 
       {isCollapsed && <Box sx={{  padding: '0.5rem', textAlign: 'center' }}>
         <Typography
@@ -312,31 +304,6 @@ const navigate=useNavigate()
         ))}
       </List>
       <Divider sx={{ borderColor: '#9B153B' }} />
-      {/* <List sx={{ marginTop: 'auto' }}>
-        <ListItem
-          component={NavLink}
-          to="/"
-          onClick={() => logout()}
-          sx={{
-            paddingRight: '0.5rem',
-            marginBottom: '0rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            '&:hover': {
-              backgroundColor: '#f0e4e6',
-            },
-          }}
-        >
-          <ListItemIcon sx={{ color: 'inherit', minWidth: 0 }}>
-            <ExitToApp />
-          </ListItemIcon>
-          {!isCollapsed && (
-            <ListItemText primary="יציאה" sx={{ color: 'inherit', textAlign: 'right', fontSize: '0.7rem', fontWeight: 'bold' }} />
-          )}
-        </ListItem>
-      </List> */}
-
 
 <List sx={{ marginTop: 'auto' }}>
         <ListItem
@@ -365,9 +332,6 @@ const navigate=useNavigate()
           )}
         </ListItem>
       </List>
-
-
-
     </Drawer>
   );
 };

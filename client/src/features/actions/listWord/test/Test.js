@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   Box,
@@ -28,23 +28,19 @@ import {
   useUpdateTestMutation,
 } from "../view/ListWordApiSlice";
 import useWordComparison from "../../../../hooks/useWordComparison";
-// import WordSpeaker from "../add/WordSpeaker";
 import useWordSpeaker from "../../../../hooks/useWordSpeaker";
-import {  FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import LOADING from "../../../loadingAnimation/LoadingAnimation";
 import useFullscreenExam from "../../../../hooks/useFullscreenExam";
 import usePopoverInstructions from "../../../../hooks/usePopoverInstructions";
 
 const Test = () => {
-  // const { startExam, isExamLocked } = useFullscreenExam();
-  // const { handlePopoverOpen, PopoverComponent } = usePopoverInstructions();
 
-    const [selectedSpeed, setSelectedSpeed] = useState(1); // ברירת המחדל למהירות רגילה
-  
-    const handleSpeedChange = (event) => {
-      setSelectedSpeed(Number(event.target.value));
-    };
-  
+  const [selectedSpeed, setSelectedSpeed] = useState(1); // ברירת המחדל למהירות רגילה  
+  const handleSpeedChange = (event) => {
+    setSelectedSpeed(Number(event.target.value));
+  };
+
   const compareWords = useWordComparison();
   const [markStudent, setMarkStudent] = useState(0);
   const [seeMark, setSeeMark] = useState(false);
@@ -55,8 +51,8 @@ const Test = () => {
   const { _id } = useParams();
   const { trying } = useParams()
   const isTrying = trying === "true";
-  const [checkedTest,setCheckedTest]=useState(false)
-  const {roles}=useAuth()
+  const [checkedTest, setCheckedTest] = useState(false)
+  const { roles } = useAuth()
   const [
     updateTest,
     {
@@ -67,19 +63,19 @@ const Test = () => {
       isLoading: loading,
     },
   ] = useUpdateTestMutation();
-//משתנים נצרכים לפופ-ובר
-const [anchorEl, setAnchorEl] = useState(null);
-const ref = useRef(null); // הגדרת ref לכפתור
+  //משתנים נצרכים לפופ-ובר
+  const [anchorEl, setAnchorEl] = useState(null);
+  const ref = useRef(null); // הגדרת ref לכפתור
 
-const handlePopoverOpen = (event) => {
-  setAnchorEl(event.currentTarget); // כאשר לוחצים על הכפתור, הפופאובר יופיע
-};
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget); // כאשר לוחצים על הכפתור, הפופאובר יופיע
+  };
 
-const handlePopoverClose = () => {
-  setAnchorEl(null); // סגירת הפופאובר
-};
+  const handlePopoverClose = () => {
+    setAnchorEl(null); // סגירת הפופאובר
+  };
 
-const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
 
 
   const [
@@ -92,7 +88,7 @@ const open = Boolean(anchorEl);
   }, [_id]);
   useEffect(() => {
     if (listWord) {
-      if (listWord.data.complete&&!isTrying) {
+      if (listWord.data.complete && !isTrying) {
         setSeeMark(true);
         setSureStarting(true);
         setMarkStudent(listWord.data.mark)
@@ -104,8 +100,8 @@ const open = Boolean(anchorEl);
   useEffect(() => {
     if (isSuccess) {
       // Set the word list
-      if(!isTrying)
-      setWordList(listWord.data.test);
+      if (!isTrying)
+        setWordList(listWord.data.test);
       else {
         const listTrying = listWord.data.test.map((item) => ({
           word: item.word,
@@ -121,32 +117,30 @@ const open = Boolean(anchorEl);
       );
       setListenCounts(initialListenCounts);
     }
-  }, [isSuccess, listWord],wordList);
-  const speakWord=useWordSpeaker()
+  }, [isSuccess, listWord], wordList);
+  const speakWord = useWordSpeaker()
 
   useEffect(() => {
     if (isTrying) {
       setSureStarting(true);
     }
     if (sureStarting && !isTrying) {
-      updateTest({ _id: _id, active: false, complete: true,test:null});
+      updateTest({ _id: _id, active: false, complete: true, test: null });
     }
   }, [trying, sureStarting, _id, isUpdateSuccess, isError, loading, updateTest]);
-  // useEffect(()=>{
-  //   if(sureStarting)
-  //   startExam()
-  // },[sureStarting])
-  useEffect(()=>{
-    if (checkedTest&&wordList){
-      if(!isTrying)
-    updateTest({
-      _id: _id,
-      active: false,
-      test: wordList,
-      complete: true,
-      mark:markStudent
-    });}
-  },[markStudent,checkedTest,wordList])
+
+  useEffect(() => {
+    if (checkedTest && wordList) {
+      if (!isTrying)
+        updateTest({
+          _id: _id,
+          active: false,
+          test: wordList,
+          complete: true,
+          mark: markStudent
+        });
+    }
+  }, [markStudent, checkedTest, wordList])
   const handleChange = (index, value) => {
     const updatedList = wordList.map((item, i) =>
       i === index
@@ -159,16 +153,16 @@ const open = Boolean(anchorEl);
     const updatedList = wordList.map((item, i) =>
       i === index
         ? {
-            ...item,
-            anotherTranslate: item.anotherTranslate
-              ? `${item.anotherTranslate}, ${value}` // הוספת פסיק והתוכן החדש אם יש כבר תוכן
-              : value, // אם אין תוכן קודם, נכניס את הערך החדש ישירות
-          }
+          ...item,
+          anotherTranslate: item.anotherTranslate
+            ? `${item.anotherTranslate}, ${value}` // הוספת פסיק והתוכן החדש אם יש כבר תוכן
+            : value, // אם אין תוכן קודם, נכניס את הערך החדש ישירות
+        }
         : item
     );
     setWordList(updatedList);
   };
-  
+
   const handleWantsStart = () => {
     setSureStarting(true);
   };
@@ -196,25 +190,25 @@ const open = Boolean(anchorEl);
       updatedListenCounts[index] -= 1;
       setListenCounts(updatedListenCounts);
     }
-    speakWord(word,selectedSpeed);
+    speakWord(word, selectedSpeed);
   };
   const checkTest = () => {
     setSeeWarning(false);
     const updatedList = wordList?.map((item) => {
       // Split item.translate by comma and trim whitespace if translate exists
-      const translationArray = item?.translate 
-        ? item.translate.split(',').map(word => word.trim()).filter(word=>word!='')
+      const translationArray = item?.translate
+        ? item.translate.split(',').map(word => word.trim()).filter(word => word != '')
         : []; // If translate is undefined, use an empty array
-    
+
       // Split item.anotherTranslate by comma and trim whitespace if anotherTranslate exists
-      const translationArray2 = item?.anotherTranslate 
-    ? item.anotherTranslate
-        .split(',')
-        .map(word => word.trim())
-        .filter(word => word !== '') // סינון מילים ריקות
-    : [];
-// If anotherTranslate is undefined, use an empty array
-    
+      const translationArray2 = item?.anotherTranslate
+        ? item.anotherTranslate
+          .split(',')
+          .map(word => word.trim())
+          .filter(word => word !== '') // סינון מילים ריקות
+        : [];
+      // If anotherTranslate is undefined, use an empty array
+
       // Check if any translation matches the answer
       const isCorrect = translationArray.some(translation => compareWords(translation, item.answer));
       const isCorrect2 = translationArray2.some(translation => compareWords(translation, item.answer));
@@ -224,22 +218,18 @@ const open = Boolean(anchorEl);
         correct: (isCorrect || isCorrect2)
       };
     });
-    
- 
-    // Update the state or perform any further actions with updatedList
-    // e.g., setWordList(updatedList);
-  
+
     setCheckedTest(true)
 
     const correctAnswers = updatedList.filter((item) => item.correct).length;
     const mark = ((correctAnswers / updatedList.length) * 100)
-    const roundMark=mark>0?mark.toFixed(2):0
+    const roundMark = mark > 0 ? mark.toFixed(2) : 0
     setMarkStudent(roundMark);
     setWordList(updatedList);
     setSeeMark(true);
 
   };
-  const handleTeacherClick=()=>{
+  const handleTeacherClick = () => {
     checkTest()
   }
   if (sureStarting === false) {
@@ -251,10 +241,12 @@ const open = Boolean(anchorEl);
         justifyContent="center"
         minHeight="100vh"
         textAlign="center"
-        sx={{   padding: '20px',
-        borderRadius: '16px',
-        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // הצללה עדינה
-        overflowY: 'auto',}}
+        sx={{
+          padding: '20px',
+          borderRadius: '16px',
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // הצללה עדינה
+          overflowY: 'auto',
+        }}
       >
         <Typography variant="h6">
           האם הינך בטוח שברצונך להתחיל את הבוחן?
@@ -292,10 +284,12 @@ const open = Boolean(anchorEl);
     );
 
   return (
-    <Box className="background-animation" sx={{   padding: '20px',
-    borderRadius: '16px',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // הצללה עדינה
-    overflowY: 'auto',}}>
+    <Box className="background-animation" sx={{
+      padding: '20px',
+      borderRadius: '16px',
+      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // הצללה עדינה
+      overflowY: 'auto',
+    }}>
       <Box
         p={3}
         component={Paper}
@@ -304,30 +298,26 @@ const open = Boolean(anchorEl);
           maxWidth: "900px",
           margin: "auto",
           backgroundColor: "rgba(255, 255, 255, 0.9)",
-        
+
         }}
       >
 
-
-
-<FormControl fullWidth variant="outlined" margin="normal">
-        <InputLabel id="speed-select-label">בחר מהירות השמעה</InputLabel>
-        <Select
-          labelId="speed-select-label"
-          id="speed-select"
-          value={selectedSpeed}
-          onChange={handleSpeedChange}
-          label="בחר מהירות השמעה"
-        >
-          <MenuItem value={0.5}>0.5x (איטי יותר)</MenuItem>
-          <MenuItem value={0.75}>0.75x (איטי)</MenuItem>
-          <MenuItem value={1}>1x (רגיל)</MenuItem>
-          <MenuItem value={1.25}>1.25x (מהיר)</MenuItem>
-          <MenuItem value={1.5}>1.5x (מהיר יותר)</MenuItem>
-        </Select>
-      </FormControl>
-
-
+        <FormControl fullWidth variant="outlined" margin="normal">
+          <InputLabel id="speed-select-label">בחר מהירות השמעה</InputLabel>
+          <Select
+            labelId="speed-select-label"
+            id="speed-select"
+            value={selectedSpeed}
+            onChange={handleSpeedChange}
+            label="בחר מהירות השמעה"
+          >
+            <MenuItem value={0.5}>0.5x (איטי יותר)</MenuItem>
+            <MenuItem value={0.75}>0.75x (איטי)</MenuItem>
+            <MenuItem value={1}>1x (רגיל)</MenuItem>
+            <MenuItem value={1.25}>1.25x (מהיר)</MenuItem>
+            <MenuItem value={1.5}>1.5x (מהיר יותר)</MenuItem>
+          </Select>
+        </FormControl>
 
         <Typography variant="h4" gutterBottom>
           {listWord?.data.title}
@@ -347,14 +337,14 @@ const open = Boolean(anchorEl);
                 <TableCell>תשובה</TableCell>
                 {seeMark && <TableCell>תשובה נכונה</TableCell>}
                 <TableCell>השמעה</TableCell>
-                {roles==='Teacher'&&<TableCell>תשובה נוספת נכונה</TableCell>}
+                {roles === 'Teacher' && <TableCell>תשובה נוספת נכונה</TableCell>}
 
               </TableRow>
             </TableHead>
             <TableBody>
               {wordList?.map((cat, index) => (
                 <TableRow key={index}>
-  
+
 
                   {seeMark && (
                     <TableCell>
@@ -393,7 +383,7 @@ const open = Boolean(anchorEl);
                       <Box name="test">{cat.answer}</Box>
                     </TableCell>
                   )}
-                  
+
                   {seeMark && <TableCell>{cat.translate}</TableCell>}
 
 
@@ -407,44 +397,45 @@ const open = Boolean(anchorEl);
                   </TableCell>
 
                   {roles === 'Teacher' && (
-                <TableCell sx={{            backgroundColor: '#f3f3e9',width:'200px'
-                  ,}}>
-                  <TextField
-                    size="small"
-                    variant="standard"
-                    onChange={(e) => handleTeacherChange(index, e.target.value)}
-                    InputProps={{
-                      // disableUnderline: true,
-                      sx: {
-                     
-                        // padding: '5px',
-                        // borderRadius: '10px',
-                      },
-                    }}
-                    inputProps={{
-                      style: {
-                        color: '#800020', // צבע הטקסט הפנימי
-                      backgroundColor: '#f3f3e9'
-                      },
-                    }}
-                    sx={{
-                      width: '100%',
-                      '& .MuiInputBase-input': {
-                        color: 'white', // צבע הכיתוב בתוך האינפוט
-                      },
-                    }}
-                  />
-                </TableCell>
-              )}
-            </TableRow>
-          
+                    <TableCell sx={{
+                      backgroundColor: '#f3f3e9', width: '200px'
+                      ,
+                    }}>
+                      <TextField
+                        size="small"
+                        variant="standard"
+                        onChange={(e) => handleTeacherChange(index, e.target.value)}
+                        InputProps={{
+                          sx: {
 
-                
+
+                          },
+                        }}
+                        inputProps={{
+                          style: {
+                            color: '#800020', // צבע הטקסט הפנימי
+                            backgroundColor: '#f3f3e9'
+                          },
+                        }}
+                        sx={{
+                          width: '100%',
+                          '& .MuiInputBase-input': {
+                            color: 'white', // צבע הכיתוב בתוך האינפוט
+                          },
+                        }}
+                      />
+                    </TableCell>
+                  )}
+                </TableRow>
+
+
+
               ))}
             </TableBody>
           </Table>
-          {roles==='Teacher' && (
-            <Box display="flex" justifyContent="center" sx={{ mt: 2 ,
+          {roles === 'Teacher' && (
+            <Box display="flex" justifyContent="center" sx={{
+              mt: 2,
             }}>
               <Button onClick={handleTeacherClick} variant="contained" color="primary">
                 עדכן מילים וציון
@@ -495,7 +486,7 @@ const open = Boolean(anchorEl);
       </Box>
       <IconButton ref={ref} onClick={handlePopoverOpen}>
         <AiOutlineInfoCircle size={24} />
-      </IconButton>   
+      </IconButton>
       {roles === 'Teacher' && (
         <Popover
           open={open}
@@ -527,14 +518,7 @@ const open = Boolean(anchorEl);
         </Popover>
       )}
       <div>
-    {/* <IconButton
-      onClick={(event) => handlePopoverOpen(event, 'הוראות פה|עוד הוראות פה')}
-      sx={{ color: '#9B153B' }}
-    >
-      <AiOutlineInfoCircle size={30} />הוראות
-    </IconButton>
-    <PopoverComponent /> */}
-  </div>
+      </div>
 
     </Box>
   );

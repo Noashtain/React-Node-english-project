@@ -33,5 +33,3 @@ const TextToSpeechComponent = () => {
 };
 
 export default TextToSpeechComponent;
-
-

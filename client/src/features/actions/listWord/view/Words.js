@@ -1,5 +1,3 @@
-
-
 import React, { useEffect } from 'react';
 import { Box, Typography, Button, Tooltip, IconButton } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
@@ -11,12 +9,6 @@ import theme from '../../../../theme';
 import WordSpeaker from '../add/WordSpeaker';
 import useAuth from '../../../../hooks/useAuth';
 import LOADING from '../../../loadingAnimation/LoadingAnimation';
-
-
-
-
-
-
 
 const Words = () => {
   const {roles}=useAuth()
@@ -141,24 +133,18 @@ const Words = () => {
             {wordList.data.date}
           </Typography>
         </Box>
-       
-
 
   <Tooltip title="Print">
                 <IconButton
                           onClick={handlePrint}
 
                   aria-label="print"
-                  // onClick={() => printTest(params.row.id)}
                   color="info"
                   sx={{ mr: 1 }}
                 >
                   <PrintIcon />
                 </IconButton>
               </Tooltip>
-
-
-
 
         <Box sx={{ height: '100%', width: '100%' }}>
           <div id="printable-area" style={{ fontSize: '10px' }}>

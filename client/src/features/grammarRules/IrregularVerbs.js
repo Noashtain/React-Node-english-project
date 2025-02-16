@@ -51,8 +51,6 @@ const irregularVerbs = [
 ];
 
 // עמודות הטבלה כולל תרגום
-
-
 function IrregularVerbs() {
   const speakWord=useWordSpeaker()
 
